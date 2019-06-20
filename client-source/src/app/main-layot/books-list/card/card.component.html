@@ -1,0 +1,48 @@
+<div class="background" (click)="close.emit()"></div>
+<div class="card">
+  <div class="title">{{!isNew?title:'Новая книга'}}<span style="color: red; font-size: 40px" *ngIf="!book">*</span></div>
+  <div style="height: 20px"></div>
+  <table style="width: 100%">
+    <tr>
+      <app-field [title]="'Название'">
+        <input class="input" (input)="titleChanged($event.target.value)" [value]="title||''"/>
+      </app-field>
+    </tr>
+    <tr>
+      <app-field [title]="'Автор'">
+        <select class="input" (input)="authorChanged($event.target[$event.target.selectedIndex].id)">
+          <option *ngFor="let author of data.authors" [id]="author.id" [selected]="book?book.authorId.id==author.id:false">{{author.name}}</option>
+        </select>
+      </app-field>
+    </tr>
+    <tr>
+      <app-field [title]="'Подробное описание'">
+        <textarea class="input" (input)="descChanged($event.target.value)" [value]="desc||''">
+
+        </textarea>
+      </app-field>
+    </tr>
+    <tr>
+      <app-field [title]="'Число страниц'">
+        <input class="input" type="number" min="0" max="1000000" (input)="pageCountChanged($event)" [value]="pageCount||''"/>
+      </app-field>
+    </tr>
+    <tr>
+      <app-field [title]="'Язык'" (input)="langChanged($event.target[$event.target.selectedIndex].id)">
+        <select class="input" style="float: left">
+          <option *ngFor="let lang of data.langs" [id]="lang.id" [selected]="book?book.langId==lang.id:false">{{lang.name}}</option>
+        </select> <div class="add" (click)="newLangModal = true">+</div>
+      </app-field>
+    </tr>
+    <tr>
+      <app-field [title]="'Жанр'">
+        <input class="input" (input)="genreChanged($event.target.value)" [value]="genre||''"/>
+      </app-field>
+    </tr>
+  </table>
+  <div style="height: 50px"></div>
+  <div class="saveButton" (click)="save()">Сохранить</div>
+  <div style="height: 50px"></div>
+  <div class="cancelButton" (click)="close.emit()">Отмена</div>
+</div>
+<app-new-lang-modal *ngIf="newLangModal" (close)="newLangModal=false"></app-new-lang-modal>

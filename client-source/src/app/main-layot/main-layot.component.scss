@@ -1,0 +1,37 @@
+.layout-wrapper{
+  margin: auto;
+  height: 80vh;
+  width: 80%;
+  position: relative;
+  top: 100px;
+  border: solid 1px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 0 10px;
+  background: white;
+}
+
+.tabs{
+  display: inline-block;
+  position: relative;
+  top: -47px;
+}
+
+.tabButton{
+  width: 150px;
+  float: left;
+  font-size: 40px;
+  background: rgba(40, 90, 40, 0.7);
+  border-radius: 15px 15px 0 0;
+  cursor: pointer;
+  margin-left: 5px;
+  box-sizing: border-box;
+  transition: 0.2s;
+}
+
+.activeTabButton{
+  transition: 0.2s;
+  background: white;
+  box-shadow: 0 -2px 3px;
+  cursor: default;
+}

@@ -1,0 +1,65 @@
+<div class="filters" *ngIf="data.books.length>1">
+  <div class="filterCell" [ngClass]="{activeFilter: titleFilter.length>0}">
+    Название/описание: <span class="resetFilter" (click)="resetTitleFilter()" *ngIf="titleFilter">✕</span><br/>
+    <input [(ngModel)]="titleFilter" (input)="titleFilterChanged($event.target.value)"/>
+  </div>
+
+  <div class="filterCell" [ngClass]="{activeFilter: authorsFilter.length>0}">
+    Автор: <span class="resetFilter" (click)="resetAuthorsFilter()" *ngIf="authorsFilter.length>0">✕</span><br/>
+    <select class="input" multiple (input)="authorFilterChanged($event.target.selectedOptions)">
+      <option *ngFor="let author of data.authors" [id]="author.id"
+              [selected]="authorIdInFilter(author.id)">{{author.name}}</option>
+    </select>
+  </div>
+
+  <div class="filterCell" [ngClass]="{activeFilter: langsFilter.length>0}">
+    Язык: <span class="resetFilter" (click)="resetLangsFilter()" *ngIf="langsFilter.length>0">✕</span><br/>
+    <select class="input" multiple (input)="langFilterChanged($event.target.selectedOptions)">
+      <option *ngFor="let lang of data.langs" [id]="lang.id"
+              [selected]="langIdInFilter(lang.id)">{{lang.name}}</option>
+    </select>
+  </div>
+
+  <div class="filterCell" [ngClass]="{activeFilter: pageCountFilter.min||pageCountFilter.max}">
+    Страниц: <span class="resetFilter" (click)="resetPageCountFilter()" *ngIf="pageCountFilter.min||pageCountFilter.max">✕</span><br/>
+    <table>
+      <tr class="tr"><td>от:</td>
+        <td><input type="number" [(ngModel)]="pageCountFilter.min" class="smallInput"
+                   (input)="pageCountFilterChanged('min', $event.target.value)"/></td></tr>
+      <tr class="tr"><td>до:</td>
+        <td><input type="number" [(ngModel)]="pageCountFilter.max" class="smallInput"
+                   (input)="pageCountFilterChanged('max', $event.target.value)"
+                   (change)="maxCountFilterAccept($event.target.value)"/></td></tr>
+    </table>
+  </div>
+
+  <div class="filterCell" [ngClass]="{activeFilter: genreFilter.length>0}">
+    Жанр: <span class="resetFilter" (click)="resetGenreFilter()" *ngIf="genreFilter.length>0">✕</span><br/>
+    <select class="input" multiple (input)="genreFilterChanged($event.target.selectedOptions)">
+      <option [id]="genre.name" *ngFor="let genre of data.genres"
+            [selected]="genreInFilter(genre.name)">{{genre.name}}</option>
+    </select>
+  </div>
+</div>
+
+<table class="table" *ngIf="data.books.length>0">
+  <thead>
+  <tr>
+    <td>Название</td>
+    <td>Автор</td>
+    <td>Число страниц</td>
+    <td>Язык</td>
+    <td>Жанр</td>
+  </tr>
+  </thead>
+  <tr *ngFor="let book of filteredBooks()" class="row" (click)="showCard(book)">
+    <td>{{book.title}}</td>
+    <td>{{data.getAuthor(book.authorId).name}}</td>
+    <td>{{book.pageCount}}</td>
+    <td>{{data.getLang(book.langId).name}}</td>
+    <td>{{book.genre}}</td>
+  </tr>
+</table>
+<div style="height: 50px;"></div>
+<div class="addButton" (click)="showCard()">+</div>
+<app-card *ngIf="showCardValue" (close)="closeCard()" [book]="book"></app-card>

@@ -1,14 +1,32 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import {HttpClientModule} from '@angular/common/http';
+
+
 import { AppComponent } from './app.component';
+import { MainLayotComponent } from './main-layot/main-layot.component';
+import { BooksListComponent } from './main-layot/books-list/books-list.component';
+import { AuthorsListComponent } from './main-layot/authors-list/authors-list.component';
+import { CardComponent } from './main-layot/books-list/card/card.component';
+import { FieldComponent } from './main-layot/books-list/card/field/field.component';
+import {FormsModule} from '@angular/forms';
+import { NewLangModalComponent } from './main-layot/books-list/card/new-lang-modal/new-lang-modal.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MainLayotComponent,
+    BooksListComponent,
+    AuthorsListComponent,
+    CardComponent,
+    FieldComponent,
+    NewLangModalComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

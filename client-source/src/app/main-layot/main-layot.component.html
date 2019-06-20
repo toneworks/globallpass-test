@@ -1,0 +1,8 @@
+<div class="layout-wrapper">
+  <div class="tabs">
+    <div class="tabButton" [ngClass]="{activeTabButton: tabId==='books'}" (click)="setTabId('books')">Книги</div>
+    <div class="tabButton" [ngClass]="{activeTabButton: tabId==='authors'}" (click)="setTabId('authors')">Авторы</div>
+  </div>
+  <app-books-list *ngIf="tabId==='books'"></app-books-list>
+  <app-authors-list *ngIf="tabId==='authors'"></app-authors-list>
+</div>

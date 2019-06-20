@@ -1,0 +1,13 @@
+<table class="table" *ngIf="data.authors.length>0">
+  <thead>
+  <tr>
+    <td>ФИО</td>
+  </tr>
+  </thead>
+  <tr *ngFor="let author of data.authors" class="row">
+    <td><input class="input" [value]="author.name" (change)="authorChanged(author, $event.target.value)"/></td>
+  </tr>
+</table>
+<div style="height: 50px;"></div>
+
+<div class="addButton" (click)="addAuthor()">+</div>

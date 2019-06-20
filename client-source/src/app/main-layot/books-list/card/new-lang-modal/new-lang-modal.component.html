@@ -1,0 +1,7 @@
+<div class="background" (click)="close.emit()"></div>
+<div class="modal">
+  <h1>Новый язык</h1>
+  <input [(ngModel)]="lang"/>
+  <div class="button" *ngIf="lang.length>0" (click)="save()">Сохранить</div>
+  <div class="button" style="font-size: 13px; margin-top: 30px;" (click)="close.emit()">Отмена</div>
+</div>
