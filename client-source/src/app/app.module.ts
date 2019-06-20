@@ -12,6 +12,7 @@ import { CardComponent } from './main-layot/books-list/card/card.component';
 import { FieldComponent } from './main-layot/books-list/card/field/field.component';
 import {FormsModule} from '@angular/forms';
 import { NewLangModalComponent } from './main-layot/books-list/card/new-lang-modal/new-lang-modal.component';
+import {NewAuthorModalComponent} from './main-layot/books-list/card/new-author-modal/new-author-modal.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { NewLangModalComponent } from './main-layot/books-list/card/new-lang-mod
     AuthorsListComponent,
     CardComponent,
     FieldComponent,
-    NewLangModalComponent
+    NewLangModalComponent,
+    NewAuthorModalComponent
   ],
   imports: [
     BrowserModule,

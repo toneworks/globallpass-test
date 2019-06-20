@@ -20,6 +20,8 @@ export class CardComponent implements OnInit {
 
   newLangModal = false;
 
+  newAuthorModal = false;
+
   @Output() close = new EventEmitter();
 
   @Input() book: Book;
@@ -58,7 +60,12 @@ export class CardComponent implements OnInit {
     this.close.emit();
   }
 
-  constructor(private data: DataService) {
+  newLang(lang){
+    console.log(this.data.langs.length);
+    this.newLangModal = false;
+  }
+
+  constructor(public data: DataService) {
   }
 
   ngOnInit() {
@@ -73,8 +80,10 @@ export class CardComponent implements OnInit {
     }
     else {
       this.isNew = true;
-      this.authorId = this.data.authors[0].id;
-      this.langId = this.data.langs[0].id;
+      if(this.data.authors.length>0)
+        this.authorId = this.data.authors[0].id;
+      if(this.data.langs.length>0)
+        this.langId = this.data.langs[0].id;
     }
   }
 }

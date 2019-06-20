@@ -2,18 +2,18 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {DataService} from '../../../../data.service';
 
 @Component({
-  selector: 'app-new-lang-modal',
-  templateUrl: './new-lang-modal.component.html',
-  styleUrls: ['./new-lang-modal.component.scss']
+  selector: 'app-new-author-modal',
+  templateUrl: './new-author-modal.component.html',
+  styleUrls: ['./new-author-modal.component.scss']
 })
-export class NewLangModalComponent implements OnInit {
+export class NewAuthorModalComponent implements OnInit {
 
-  lang = '';
+  author = '';
 
   @Output() close = new EventEmitter();
 
-  save() {
-    this.data.addLang(this.lang);
+  save(){
+    this.data.addAuthor(this.author);
     this.close.emit();
   }
 

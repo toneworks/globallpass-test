@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {EventEmitter, Injectable, Output} from '@angular/core';
 import {RequestService} from './request.service';
 import {Book} from './book';
 
@@ -99,13 +99,13 @@ export class DataService {
     return this._langs.find(lang => lang.id == langId)||{};
   }
 
-  addAuthor() {
+  addAuthor(name = '') {
     const id = this.guid();
-    this._authors.push({id: id, name: ''});
+    this._authors.push({id: id, name: name});
     this.request.get({
       'method': 'addAuthor',
       'id': id,
-      'name': ''
+      'name': name
     }).subscribe(answer => {
     });
   }
@@ -139,7 +139,7 @@ export class DataService {
         this._langs.push({id: newId, name: lang});
       else
         alert('Server error adding language');
-    })
+    });
   }
 
   constructor(private request: RequestService) {
@@ -156,6 +156,6 @@ export class DataService {
       this._langs = answer.data.langs;
 
       this._booksChanged = true;
-    }, error => alert('Server error receiving data'));
+    }, error => {console.log(error); alert('Server error receiving data')});
   }
 }

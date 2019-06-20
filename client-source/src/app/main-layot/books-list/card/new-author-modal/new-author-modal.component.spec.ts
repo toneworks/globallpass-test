@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NewLangModalComponent } from './new-lang-modal.component';
+import { NewAuthorModalComponent } from './new-author-modal.component';
 
 describe('NewAuthorModalComponent', () => {
-  let component: NewLangModalComponent;
-  let fixture: ComponentFixture<NewLangModalComponent>;
+  let component: NewAuthorModalComponent;
+  let fixture: ComponentFixture<NewAuthorModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NewLangModalComponent ]
+      declarations: [ NewAuthorModalComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NewLangModalComponent);
+    fixture = TestBed.createComponent(NewAuthorModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

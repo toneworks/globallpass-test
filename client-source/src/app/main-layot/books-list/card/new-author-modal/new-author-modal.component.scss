@@ -1,0 +1,36 @@
+.background {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 2;
+}
+
+.modal {
+  width: 40vw;
+  height: 40vh;
+  background: white;
+  border: solid 1px;
+  border-radius: 15px;
+  position: fixed;
+  top: 30vh;
+  left: 30vw;
+  z-index: 2;
+}
+
+.button{
+  border: solid 1px;
+  box-shadow: 0 0 10px;
+  font-size: 20px;
+  margin: auto;
+  margin-top: 40px;
+  width: 180px;
+  cursor: pointer;
+  border-radius: 15px;
+}
+
+.button:active{
+  box-shadow: none;
+}

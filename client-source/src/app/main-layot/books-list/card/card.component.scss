@@ -77,3 +77,8 @@ $font-size: 20px;
 .add:active{
   box-shadow: none;
 }
+
+.disable{
+  pointer-events: none;
+  background: rgba(0,0,0,0.1);
+}

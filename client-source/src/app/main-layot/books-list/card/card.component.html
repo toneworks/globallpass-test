@@ -10,9 +10,9 @@
     </tr>
     <tr>
       <app-field [title]="'Автор'">
-        <select class="input" (input)="authorChanged($event.target[$event.target.selectedIndex].id)">
+        <select class="input" style="float: left" (input)="authorChanged($event.target[$event.target.selectedIndex].id)">
           <option *ngFor="let author of data.authors" [id]="author.id" [selected]="book?book.authorId.id==author.id:false">{{author.name}}</option>
-        </select>
+        </select> <div class="add" (click)="newAuthorModal = true">+</div>
       </app-field>
     </tr>
     <tr>
@@ -41,8 +41,10 @@
     </tr>
   </table>
   <div style="height: 50px"></div>
-  <div class="saveButton" (click)="save()">Сохранить</div>
+  <div class="saveButton" (click)="save()" [ngClass]="{disable: !authorId||!langId}">Сохранить</div>
   <div style="height: 50px"></div>
   <div class="cancelButton" (click)="close.emit()">Отмена</div>
 </div>
 <app-new-lang-modal *ngIf="newLangModal" (close)="newLangModal=false"></app-new-lang-modal>
+<app-new-author-modal *ngIf="newAuthorModal" (close)="newAuthorModal=false"></app-new-author-modal>
+

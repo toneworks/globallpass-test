@@ -33,7 +33,7 @@
     </table>
   </div>
 
-  <div class="filterCell" [ngClass]="{activeFilter: genreFilter.length>0}">
+  <div class="filterCell" [ngClass]="{activeFilter: genreFilter.length>0}" *ngIf="data.genres.length>1">
     Жанр: <span class="resetFilter" (click)="resetGenreFilter()" *ngIf="genreFilter.length>0">✕</span><br/>
     <select class="input" multiple (input)="genreFilterChanged($event.target.selectedOptions)">
       <option [id]="genre.name" *ngFor="let genre of data.genres"
