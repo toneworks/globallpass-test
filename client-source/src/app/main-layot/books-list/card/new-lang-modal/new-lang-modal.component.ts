@@ -1,5 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {DataService} from '../../../../data.service';
+import {LangsService} from '../../../../langs.service';
 
 @Component({
   selector: 'app-new-lang-modal',
@@ -13,11 +14,11 @@ export class NewLangModalComponent implements OnInit {
   @Output() close = new EventEmitter();
 
   save() {
-    this.data.addLang(this.lang);
+    this.langs.addLang(this.lang);
     this.close.emit();
   }
 
-  constructor(private data: DataService) { }
+  constructor(private langs: LangsService) { }
 
   ngOnInit() {
   }

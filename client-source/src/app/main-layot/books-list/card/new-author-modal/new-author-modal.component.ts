@@ -1,5 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {DataService} from '../../../../data.service';
+import {AuthorsService} from '../../../../authors.service';
 
 @Component({
   selector: 'app-new-author-modal',
@@ -8,16 +9,16 @@ import {DataService} from '../../../../data.service';
 })
 export class NewAuthorModalComponent implements OnInit {
 
-  author = '';
+  authorName = '';
 
   @Output() close = new EventEmitter();
 
-  save(){
-    this.data.addAuthor(this.author);
+  save() {
+    this.authors.addOrUpdateAuthor(this.authorName);
     this.close.emit();
   }
 
-  constructor(private data: DataService) { }
+  constructor(private authors: AuthorsService) { }
 
   ngOnInit() {
   }

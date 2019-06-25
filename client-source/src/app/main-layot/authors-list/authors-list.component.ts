@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from '../../data.service';
+import {AuthorsService} from '../../authors.service';
 
 @Component({
   selector: 'app-authors-list',
@@ -9,14 +10,14 @@ import {DataService} from '../../data.service';
 export class AuthorsListComponent implements OnInit {
 
   addAuthor(){
-    this.data.addAuthor();
+    this.authors.addOrUpdateAuthor();
   }
 
   authorChanged(author, newValue){
-    this.data.authorChanged(author, newValue);
+    this.authors.addOrUpdateAuthor(newValue, author);
   }
 
-  constructor(public data: DataService) { }
+  constructor(public authors: AuthorsService) { }
 
   ngOnInit() {
   }

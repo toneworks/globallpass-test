@@ -11,7 +11,7 @@
     <tr>
       <app-field [title]="'Автор'">
         <select class="input" style="float: left" (input)="authorChanged($event.target[$event.target.selectedIndex].id)">
-          <option *ngFor="let author of data.authors" [id]="author.id" [selected]="book?book.authorId.id==author.id:false">{{author.name}}</option>
+          <option *ngFor="let author of authors.all" [id]="author.id" [selected]="book?book.authorId == author.id:false">{{author.name}}</option>
         </select> <div class="add" (click)="newAuthorModal = true">+</div>
       </app-field>
     </tr>
@@ -30,7 +30,7 @@
     <tr>
       <app-field [title]="'Язык'" (input)="langChanged($event.target[$event.target.selectedIndex].id)">
         <select class="input" style="float: left">
-          <option *ngFor="let lang of data.langs" [id]="lang.id" [selected]="book?book.langId==lang.id:false">{{lang.name}}</option>
+          <option *ngFor="let lang of langs.all" [id]="lang.id" [selected]="book?book.langId==lang.id:false">{{lang.name}}</option>
         </select> <div class="add" (click)="newLangModal = true">+</div>
       </app-field>
     </tr>
@@ -41,9 +41,9 @@
     </tr>
   </table>
   <div style="height: 50px"></div>
-  <div class="saveButton" (click)="save()" [ngClass]="{disable: !authorId||!langId}">Сохранить</div>
+  <div class="saveButton" (click)="save()" [ngClass]="{disable: !authorId||!langId}" [routerLink]="'/books-list'">Сохранить</div>
   <div style="height: 50px"></div>
-  <div class="cancelButton" (click)="close.emit()">Отмена</div>
+  <div class="cancelButton" (click)="close.emit()" [routerLink]="'/books-list'">Отмена</div>
 </div>
 <app-new-lang-modal *ngIf="newLangModal" (close)="newLangModal=false"></app-new-lang-modal>
 <app-new-author-modal *ngIf="newAuthorModal" (close)="newAuthorModal=false"></app-new-author-modal>

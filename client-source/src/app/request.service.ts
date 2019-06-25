@@ -12,16 +12,12 @@ export class RequestService {
 
   private url = environment.apiUrl;
 
-  get(request_object: object): Observable<any> {
-    // const requestString = JSON.stringify(request_object);
-    // request_object['signature'] = sha3_224(requestString + sign);
-    const obs = this.http.get(this.url + '/?' + JSON.stringify(request_object));
-    return obs;
-    //.flatMap((answer: any) => {
-    //   return Observable.create((observer) => {
-    //     observer.next(answer);
-    //   });
-    // });
+  get(path): Observable<any> {
+    return this.http.get(this.url + path);
+  }
+
+  post(path, data): Observable<any> {
+    return this.http.post(this.url + path, data);
   }
 
   constructor(private http: HttpClient) {

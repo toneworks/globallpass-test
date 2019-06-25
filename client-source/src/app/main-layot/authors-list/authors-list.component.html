@@ -1,10 +1,10 @@
-<table class="table" *ngIf="data.authors.length>0">
+<table class="table" *ngIf="authors.length>0">
   <thead>
   <tr>
     <td>ФИО</td>
   </tr>
   </thead>
-  <tr *ngFor="let author of data.authors" class="row">
+  <tr *ngFor="let author of authors.all" class="row">
     <td><input class="input" [value]="author.name" (change)="authorChanged(author, $event.target.value)"/></td>
   </tr>
 </table>

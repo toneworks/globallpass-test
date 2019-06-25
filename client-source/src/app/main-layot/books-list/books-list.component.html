@@ -1,21 +1,21 @@
-<div class="filters" *ngIf="data.books.length>1">
+<div class="filters" *ngIf="books.length>1">
   <div class="filterCell" [ngClass]="{activeFilter: titleFilter.length>0}">
     Название/описание: <span class="resetFilter" (click)="resetTitleFilter()" *ngIf="titleFilter">✕</span><br/>
     <input [(ngModel)]="titleFilter" (input)="titleFilterChanged($event.target.value)"/>
   </div>
 
-  <div class="filterCell" [ngClass]="{activeFilter: authorsFilter.length>0}">
+  <div class="filterCell" [ngClass]="{activeFilter: authorsFilter.length>0}" *ngIf="authors.length>1">
     Автор: <span class="resetFilter" (click)="resetAuthorsFilter()" *ngIf="authorsFilter.length>0">✕</span><br/>
     <select class="input" multiple (input)="authorFilterChanged($event.target.selectedOptions)">
-      <option *ngFor="let author of data.authors" [id]="author.id"
+      <option *ngFor="let author of authors.all" [id]="author.id"
               [selected]="authorIdInFilter(author.id)">{{author.name}}</option>
     </select>
   </div>
 
-  <div class="filterCell" [ngClass]="{activeFilter: langsFilter.length>0}">
+  <div class="filterCell" [ngClass]="{activeFilter: langsFilter.length>0}" *ngIf="langs.length>1">
     Язык: <span class="resetFilter" (click)="resetLangsFilter()" *ngIf="langsFilter.length>0">✕</span><br/>
     <select class="input" multiple (input)="langFilterChanged($event.target.selectedOptions)">
-      <option *ngFor="let lang of data.langs" [id]="lang.id"
+      <option *ngFor="let lang of langs.all" [id]="lang.id"
               [selected]="langIdInFilter(lang.id)">{{lang.name}}</option>
     </select>
   </div>
@@ -33,16 +33,16 @@
     </table>
   </div>
 
-  <div class="filterCell" [ngClass]="{activeFilter: genreFilter.length>0}" *ngIf="data.genres.length>1">
+  <div class="filterCell" [ngClass]="{activeFilter: genreFilter.length>0}" *ngIf="books.genres.length>1">
     Жанр: <span class="resetFilter" (click)="resetGenreFilter()" *ngIf="genreFilter.length>0">✕</span><br/>
     <select class="input" multiple (input)="genreFilterChanged($event.target.selectedOptions)">
-      <option [id]="genre.name" *ngFor="let genre of data.genres"
+      <option [id]="genre.name" *ngFor="let genre of books.genres"
             [selected]="genreInFilter(genre.name)">{{genre.name}}</option>
     </select>
   </div>
 </div>
 
-<table class="table" *ngIf="data.books.length>0">
+<table class="table" *ngIf="books.length>0">
   <thead>
   <tr>
     <td>Название</td>
@@ -52,14 +52,15 @@
     <td>Жанр</td>
   </tr>
   </thead>
-  <tr *ngFor="let book of filteredBooks()" class="row" (click)="showCard(book)">
+  <tr *ngFor="let book of filteredBooks()" class="row" [routerLink]="'/books-list/'+book.id">
     <td>{{book.title}}</td>
-    <td>{{data.getAuthor(book.authorId).name}}</td>
+    <td>{{authors.name(book.authorId)}}</td>
     <td>{{book.pageCount}}</td>
-    <td>{{data.getLang(book.langId).name}}</td>
+    <td>{{langs.name(book.langId)}}</td>
     <td>{{book.genre}}</td>
   </tr>
 </table>
 <div style="height: 50px;"></div>
-<div class="addButton" (click)="showCard()">+</div>
-<app-card *ngIf="showCardValue" (close)="closeCard()" [book]="book"></app-card>
+<div class="addButton" [routerLink]="'/books-list/new'">+</div>
+<router-outlet></router-outlet>
+<!--<app-card *ngIf="showCardValue" (close)="closeCard()" [book]="book"></app-card>-->

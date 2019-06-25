@@ -7,6 +7,18 @@ export class Book {
   langId;
   genre;
 
+  public get data() {
+    return {
+      id: this.id,
+      title: this.title,
+      desc: this.desc,
+      authorId: this.authorId,
+      pageCount: this.pageCount,
+      langId: this.langId,
+      genre: this.genre
+    };
+  }
+
   private syncStatus = 0; // Начальное состояние
 
   synchronizing() {
@@ -24,12 +36,12 @@ export class Book {
   public update(title, authorId, desc, pageCount, langId, genre, id = false){
     if(id)
       this.id = id;
-    this.title = title;
+    this.title = title || '';
     this.authorId = authorId;
-    this.desc = desc;
+    this.desc = desc || '';
     this.pageCount = pageCount;
     this.langId = langId;
-    this.genre = genre;
+    this.genre = genre || '';
   }
 
   constructor(title, author, desc, pageCount, langId, genre, id) {

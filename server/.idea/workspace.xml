@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0c07c122-14d5-46c3-a9d9-ac3482a25637" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../client-source/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../client-source/src/app/app.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client-source/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../client-source/src/app/app.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client-source/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../client-source/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client-source/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../client-source/src/environments/environment.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,7 +30,7 @@
         <entry file="file://$PROJECT_DIR$/DataController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
-              <caret line="66" column="27" lean-forward="true" selection-start-line="66" selection-start-column="27" selection-end-line="66" selection-end-column="27" />
+              <caret line="66" column="27" selection-start-line="66" selection-start-column="27" selection-end-line="66" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -127,8 +124,9 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/basic" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -161,16 +159,15 @@
       <updated>1560845691336</updated>
       <workItem from="1560845692451" duration="2073000" />
       <workItem from="1560925439321" duration="10244000" />
-      <workItem from="1561021026490" duration="935000" />
+      <workItem from="1561021026490" duration="1551000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13252000" />
+    <option name="totallyTimeSpent" value="13868000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1920" height="986" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25506938" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -217,7 +214,7 @@
     <entry file="file://$PROJECT_DIR$/DataController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
-          <caret line="66" column="27" lean-forward="true" selection-start-line="66" selection-start-column="27" selection-end-line="66" selection-end-column="27" />
+          <caret line="66" column="27" selection-start-line="66" selection-start-column="27" selection-end-line="66" selection-end-column="27" />
         </state>
       </provider>
     </entry>

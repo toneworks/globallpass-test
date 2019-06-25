@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from '../../data.service';
+import {BookService} from '../../book.service';
+import {LangsService} from '../../langs.service';
+import {AuthorsService} from '../../authors.service';
 
 @Component({
   selector: 'app-books-list',
@@ -57,7 +60,6 @@ export class BooksListComponent implements OnInit {
   }
 
   pageCountFilterChanged(extreme, value){
-    console.log(extreme, value);
     if(!value) {
       this.pageCountFilter[extreme] = undefined;
       value = undefined;
@@ -112,12 +114,17 @@ export class BooksListComponent implements OnInit {
   }
 
   private matchPageCountFilter(book){
+    if(book.pageCount === null)
+      book.pageCount = undefined;
     if(this.pageCountFilter.min)
       if(book.pageCount<this.pageCountFilter.min)
         return false;
     if(this.pageCountFilter.max)
       if(book.pageCount>this.pageCountFilter.max)
         return false;
+    if(this.pageCountFilter.max&&this.pageCountFilter.min&&!book.pageCount) {
+      return false;
+    }
     return true;
   }
 
@@ -133,11 +140,11 @@ export class BooksListComponent implements OnInit {
   }
 
   filteredBooks() {
-    if(this.data.booksChanged() || this.filterChanged || !this._filteredBooks) {
+    if(this.books.changed || this.filterChanged || !this._filteredBooks) {
       this.filterChanged = false;
-      this._filteredBooks = [];//this.data.books;
-      for(let i = 0; i < this.data.books.length; i++){
-        const book = this.data.books[i];
+      this._filteredBooks = [];
+      for(let i = 0; i < this.books.length; i++){
+        const book = this.books.all[i];
         if(
           this.matchTitleFilter(book)&&
           this.matchAuthorsFilter(book)&&
@@ -192,7 +199,7 @@ export class BooksListComponent implements OnInit {
     this.filterChanged = true;
   }
 
-  constructor(public data: DataService) {}
+  constructor(public data: DataService, public books: BookService, public langs: LangsService, public authors: AuthorsService) {}
 
   ngOnInit() {
   }

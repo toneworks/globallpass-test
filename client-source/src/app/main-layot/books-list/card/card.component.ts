@@ -1,6 +1,11 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {DataService} from '../../../data.service';
 import {Book} from '../../../book';
+import {AuthorsService} from '../../../authors.service';
+import {LangsService} from '../../../langs.service';
+import {BookService} from '../../../book.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-card',
@@ -56,34 +61,44 @@ export class CardComponent implements OnInit {
   }
 
   save() {
-    this.data.addOrUpdateBook(this.book, this.title, this.authorId, this.desc, this.pageCount, this.langId, this.genre);
+    this.books.addOrUpdateBook(this.book, this.title, this.authorId, this.desc, this.pageCount, this.langId, this.genre);
     this.close.emit();
   }
 
-  newLang(lang){
-    console.log(this.data.langs.length);
-    this.newLangModal = false;
-  }
-
-  constructor(public data: DataService) {
+  constructor(public authors: AuthorsService, public langs: LangsService, private books: BookService, private route: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit() {
-    if(this.book) {
-      this.isNew = false;
-      this.title = this.book.title;
-      this.authorId = this.book.authorId;
-      this.desc = this.book.desc;
-      this.pageCount = this.book.pageCount;
-      this.langId = this.book.langId;
-      this.genre = this.book.genre;
+    const init = () => {
+      this.book = this.books.byId(this.route.snapshot.paramMap.get('id'));
+      if (this.book) {
+        this.isNew = false;
+        this.title = this.book.title;
+        this.authorId = this.book.authorId;
+        this.desc = this.book.desc;
+        this.pageCount = this.book.pageCount;
+        this.langId = this.book.langId;
+        this.genre = this.book.genre;
+      } else {
+        this.isNew = true;
+        if (this.authors.length > 0)
+          this.authorId = this.authors.all[0].id;
+        else
+          this.authors.justAdded.subscribe(author => this.authorId = author.id);
+        if (this.langs.length > 0)
+          this.langId = this.langs.all[0].id;
+        else
+          this.langs.justAdded.subscribe(lang => this.langId = lang.id);
+      }
     }
-    else {
-      this.isNew = true;
-      if(this.data.authors.length>0)
-        this.authorId = this.data.authors[0].id;
-      if(this.data.langs.length>0)
-        this.langId = this.data.langs[0].id;
+
+    if(this.books.loaded) {
+      init();
     }
+    else
+      this.books.justLoaded.subscribe(() => {
+        init();
+      });
   }
 }

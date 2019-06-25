@@ -7,7 +7,7 @@ import {Book} from './book';
 })
 export class DataService {
 
-  private guid() {
+  public guid() {
     function s4() {
       return Math.floor((1 + Math.random()) * 0x10000)
         .toString(16)
@@ -129,33 +129,33 @@ export class DataService {
   }
 
   addLang(lang){
-    const newId = this.guid();
-    this.request.get({
-      method: 'addLang',
-      id: newId,
-      name: lang
-    }).subscribe(answer => {
-      if(answer.status==200)
-        this._langs.push({id: newId, name: lang});
-      else
-        alert('Server error adding language');
-    });
+    // const newId = this.guid();
+    // this.request.get({
+    //   method: 'addLang',
+    //   id: newId,
+    //   name: lang
+    // }).subscribe(answer => {
+    //   if(answer.status==200)
+    //     this._langs.push({id: newId, name: lang});
+    //   else
+    //     alert('Server error adding language');
+    // });
   }
 
   constructor(private request: RequestService) {
-    this.request.get({
-      method: 'getData'
-    }).subscribe(answer => {
-      for (let i = 0; i < answer.data.books.length; i++) {
-        const book = answer.data.books[i];
-        this._books.push(new Book(book.title, book.authorId, book.desc, book.pageCount, book.langId, book.genre, book.id));
-        if(!this._genres.find(genre => genre.name==book.genre))
-          this._genres.push({name: book.genre});
-      }
-      this._authors = answer.data.authors;
-      this._langs = answer.data.langs;
-
-      this._booksChanged = true;
-    }, error => {console.log(error); alert('Server error receiving data')});
+    // this.request.get({
+    //   method: 'getData'
+    // }).subscribe(answer => {
+    //   for (let i = 0; i < answer.data.books.length; i++) {
+    //     const book = answer.data.books[i];
+    //     this._books.push(new Book(book.title, book.authorId, book.desc, book.pageCount, book.langId, book.genre, book.id));
+    //     if(!this._genres.find(genre => genre.name==book.genre))
+    //       this._genres.push({name: book.genre});
+    //   }
+    //   this._authors = answer.data.authors;
+    //   this._langs = answer.data.langs;
+    //
+    //   this._booksChanged = true;
+    // }, error => {console.log(error); alert('Server error receiving data')});
   }
 }
