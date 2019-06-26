@@ -52,7 +52,6 @@ export class AuthorsService {
     if(this.justAddedSubscriber)
       this.justAddedSubscriber.next(newAuthor);
     this.request.post('/authors', newAuthor).subscribe(answer => {}, error => console.log('error', error));
-    console.log('addorupdated', this._authors);
     this._changed = true;
   }
 

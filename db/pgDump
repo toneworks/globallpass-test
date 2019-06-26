@@ -1,0 +1,72 @@
+-- Table: public.authors
+
+-- DROP TABLE public.authors;
+
+CREATE TABLE public.authors
+(
+  id text NOT NULL,
+  name text,
+  CONSTRAINT pk_id PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.authors
+  OWNER TO globalpas;
+
+-- Table: public.langs
+
+-- DROP TABLE public.langs;
+
+CREATE TABLE public.langs
+(
+  id text NOT NULL,
+  name text,
+  CONSTRAINT pk_langs_id PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.langs
+  OWNER TO globalpas;
+
+CREATE TABLE public.books
+(
+  id text NOT NULL,
+  title text,
+  "authorId" text,
+  description text,
+  "pageCount" text,
+  "langId" text,
+  genre text,
+  CONSTRAINT pk_books_id PRIMARY KEY (id),
+  CONSTRAINT fk_auth_id FOREIGN KEY ("authorId")
+      REFERENCES public.authors (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT fk_lang_id FOREIGN KEY ("langId")
+      REFERENCES public.langs (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.books
+  OWNER TO globalpas;
+
+-- Index: public.fki_auth_id
+
+-- DROP INDEX public.fki_auth_id;
+
+CREATE INDEX fki_auth_id
+  ON public.books
+  USING btree
+  ("authorId" COLLATE pg_catalog."default");
+
+-- Index: public.fki_lang_id
+
+-- DROP INDEX public.fki_lang_id;
+
+CREATE INDEX fki_lang_id
+  ON public.books
+  USING btree
+  ("langId" COLLATE pg_catalog."default");
