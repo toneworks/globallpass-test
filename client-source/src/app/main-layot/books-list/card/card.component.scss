@@ -9,12 +9,14 @@
 
 .card {
   width: 80vw;
+  min-width: 700px;
   height: 80vh;
   background: white;
   border: solid 1px;
   border-radius: 15px;
   position: fixed;
   top: 10vh;
+  left: 10vw;
   z-index: 1;
 }
 

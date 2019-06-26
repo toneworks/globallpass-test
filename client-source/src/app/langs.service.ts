@@ -11,6 +11,14 @@ export class LangsService {
   justAdded: Observable<any>;
   private justAddedSubscriber;
 
+  justLoaded: Observable<any>;
+  private justLoadedSubscriber;
+
+  private _loaded = false;
+  public get loaded(){
+    return this._loaded;
+  }
+
   // tslint:disable-next-line:variable-name
   private _langs = [];
 
@@ -39,7 +47,13 @@ export class LangsService {
   constructor(private request: RequestService, private data: DataService) {
     this.request.get('/langs').subscribe(answer => {
       this._langs = answer;
+      if(this.justAddedSubscriber)
+        this.justAddedSubscriber.next();
+      if(this.justLoadedSubscriber)
+        this.justLoadedSubscriber.next();
+      this._loaded = true;
     });
     this.justAdded = new Observable(subscriber => this.justAddedSubscriber = subscriber);
+    this.justLoaded = new Observable(subscriber => this.justLoadedSubscriber = subscriber);
   }
 }

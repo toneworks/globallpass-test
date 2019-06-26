@@ -1,9 +1,11 @@
 .layout-wrapper{
   margin: auto;
-  height: 80vh;
-  width: 80%;
+  height: 95vh;
+  width: 95vw;
+  min-width: 1100px;
+  min-height: 836px;
   position: relative;
-  top: 100px;
+  top: 2.5vh;
   border: solid 1px;
   border-radius: 15px;
   text-align: center;

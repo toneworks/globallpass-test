@@ -1,7 +1,10 @@
 <div class="background" (click)="close.emit()"></div>
 <div class="modal">
   <h1>Новый автор</h1>
-  <input [(ngModel)]="authorName"/>
-  <div class="button" *ngIf="authorName.length>0" (click)="save()">Сохранить</div>
-  <div class="button" style="font-size: 13px; margin-top: 30px;" (click)="close.emit()">Отмена</div>
+  <mat-form-field>
+    <input matInput [(ngModel)]="authorName"/>
+  </mat-form-field>
+  <br/>
+  <button mat-button *ngIf="authorName.length>0" (click)="save()">Сохранить</button><br/>
+  <button mat-button style="font-size: 13px; margin-top: 30px;" (click)="close.emit()">Отмена</button>
 </div>

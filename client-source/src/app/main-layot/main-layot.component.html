@@ -1,13 +1,8 @@
 <div class="layout-wrapper">
-  <div class="tabs">
-    <div class="tabButton" (click)="setTabId('books')"
-         routerLink="/books-list" [routerLinkActive]="'activeTabButton'">Книги</div>
-    <div class="tabButton" (click)="setTabId('authors')"
-         routerLink="/authors-list" [routerLinkActive]="'activeTabButton'">Авторы</div>
-  </div>
+  <nav mat-tab-nav-bar>
+    <a mat-tab-link routerLink="/books-list"> Книги </a>
+    <a mat-tab-link routerLink="/authors-list"> Авторы </a>
+  </nav>
   <router-outlet></router-outlet>
-
-<!--  <app-books-list *ngIf="tabId==='books'"></app-books-list>-->
-<!--  <app-authors-list *ngIf="tabId==='authors'"></app-authors-list>-->
 </div>
 

@@ -2,49 +2,44 @@
 <div class="card">
   <div class="title">{{!isNew?title:'Новая книга'}}<span style="color: red; font-size: 40px" *ngIf="!book">*</span></div>
   <div style="height: 20px"></div>
-  <table style="width: 100%">
-    <tr>
-      <app-field [title]="'Название'">
-        <input class="input" (input)="titleChanged($event.target.value)" [value]="title||''"/>
-      </app-field>
-    </tr>
-    <tr>
-      <app-field [title]="'Автор'">
-        <select class="input" style="float: left" (input)="authorChanged($event.target[$event.target.selectedIndex].id)">
-          <option *ngFor="let author of authors.all" [id]="author.id" [selected]="book?book.authorId == author.id:false">{{author.name}}</option>
-        </select> <div class="add" (click)="newAuthorModal = true">+</div>
-      </app-field>
-    </tr>
-    <tr>
-      <app-field [title]="'Подробное описание'">
-        <textarea class="input" (input)="descChanged($event.target.value)" [value]="desc||''">
 
-        </textarea>
-      </app-field>
-    </tr>
-    <tr>
-      <app-field [title]="'Число страниц'">
-        <input class="input" type="number" min="0" max="1000000" (input)="pageCountChanged($event)" [value]="pageCount||''"/>
-      </app-field>
-    </tr>
-    <tr>
-      <app-field [title]="'Язык'" (input)="langChanged($event.target[$event.target.selectedIndex].id)">
-        <select class="input" style="float: left">
-          <option *ngFor="let lang of langs.all" [id]="lang.id" [selected]="book?book.langId==lang.id:false">{{lang.name}}</option>
-        </select> <div class="add" (click)="newLangModal = true">+</div>
-      </app-field>
-    </tr>
-    <tr>
-      <app-field [title]="'Жанр'">
-        <input class="input" (input)="genreChanged($event.target.value)" [value]="genre||''"/>
-      </app-field>
-    </tr>
-  </table>
+  <mat-form-field style="width: 80%; margin: auto">
+    <input matInput placeholder="Название книги" [(ngModel)]="title" [value]="title || ''">
+  </mat-form-field>
+
+  <mat-form-field style="width: 80%; margin: auto; position: relative; left: 32px">
+    <mat-label>Автор</mat-label>
+    <mat-select [(value)]="author">
+      <mat-option *ngFor="let topping of authors.all" [value]="topping">{{topping.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-button style="position: relative; left: 42px" (click)="newAuthorModal=true">+</button>
+
+  <mat-form-field style="width: 80%; margin: auto">
+    <textarea matInput placeholder="Описание" [(ngModel)]="desc" [value]="desc || ''"></textarea>
+  </mat-form-field>
+
+  <mat-form-field style="width: 80%; margin: auto">
+    <input matInput type="number" placeholder="Число страниц" [(ngModel)]="pageCount" [value]="pageCount || ''">
+  </mat-form-field>
+
+  <mat-form-field style="width: 80%; margin: auto; position: relative; left: 32px;">
+    <mat-label>Язык</mat-label>
+    <mat-select [(value)]="lang">
+      <mat-option *ngFor="let topping of langs.all" [value]="topping">{{topping.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-button style="position: relative; left: 42px" (click)="newLangModal = true">+</button>
+
+  <mat-form-field style="width: 80%; margin: auto">
+    <input matInput placeholder="Жанр" [(ngModel)]="genre" [value]="genre || ''">
+  </mat-form-field>
+
   <div style="height: 50px"></div>
-  <div class="saveButton" (click)="save()" [ngClass]="{disable: !authorId||!langId}" [routerLink]="'/books-list'">Сохранить</div>
+<!--  <div class="saveButton" (click)="save()" [ngClass]="{disable: !authorId||!langId}" [routerLink]="'/books-list'">Сохранить</div>-->
+  <button mat-button style="width: 80%; font-size: 25px;" (click)="save()" [routerLink]="'/books-list'">Сохранить</button>
   <div style="height: 50px"></div>
-  <div class="cancelButton" (click)="close.emit()" [routerLink]="'/books-list'">Отмена</div>
+  <button mat-button style="width: 40%; font-size: 12px" [routerLink]="'/books-list'">Отмена</button>
 </div>
 <app-new-lang-modal *ngIf="newLangModal" (close)="newLangModal=false"></app-new-lang-modal>
 <app-new-author-modal *ngIf="newAuthorModal" (close)="newAuthorModal=false"></app-new-author-modal>
-

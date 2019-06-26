@@ -14,12 +14,19 @@ import { switchMap } from 'rxjs/operators';
 })
 export class CardComponent implements OnInit {
 
+  test(value){
+    console.log(value);
+  }
+
   title;
   desc;
   authorId;
   pageCount;
   langId;
   genre;
+
+  author;
+  lang;
 
   isNew = true;
 
@@ -61,7 +68,7 @@ export class CardComponent implements OnInit {
   }
 
   save() {
-    this.books.addOrUpdateBook(this.book, this.title, this.authorId, this.desc, this.pageCount, this.langId, this.genre);
+    this.books.addOrUpdateBook(this.book, this.title, this.author.id, this.desc, this.pageCount, this.lang.id, this.genre);
     this.close.emit();
   }
 
@@ -80,12 +87,30 @@ export class CardComponent implements OnInit {
         this.pageCount = this.book.pageCount;
         this.langId = this.book.langId;
         this.genre = this.book.genre;
+
+        if(this.authors.loaded)
+          this.author = this.authors.all.find(author => author.id == this.authorId);
+        else
+          this.authors.justLoaded.subscribe(() => {
+            this.author = this.authors.all.find(author => author.id == this.authorId);
+          });
+
+        if(this.langs.loaded) {
+          this.lang = this.langs.all.find(lang => lang.id == this.langId);
+        }
+        else {
+          this.langs.justLoaded.subscribe(() => {
+            this.lang = this.langs.all.find(lang => lang.id == this.langId);
+          });
+        }
       } else {
         this.isNew = true;
+
         if (this.authors.length > 0)
           this.authorId = this.authors.all[0].id;
         else
           this.authors.justAdded.subscribe(author => this.authorId = author.id);
+
         if (this.langs.length > 0)
           this.langId = this.langs.all[0].id;
         else

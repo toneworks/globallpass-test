@@ -32,12 +32,15 @@ export class BookService {
 
   // tslint:disable-next-line:variable-name
   private _booksChanged;
-  public get changed(){
-    return this._booksChanged;
+  public get changed() {
+    const changed = this._booksChanged;
+    this._booksChanged = false;
+    return changed;
   }
 
+  // tslint:disable-next-line:variable-name
   private _loaded = false;
-  public get loaded(){
+  public get loaded() {
     return this._loaded;
   }
 
@@ -62,7 +65,7 @@ export class BookService {
         // Обновление массива жанров
         this._genres = [];
         for (let i = 0; i < this._books.length; i++)
-          if (!this._genres.find(curGenre => curGenre.name === this._books[i].genre))
+          if (!this._genres.find(curGenre => curGenre.name === this._books[i].genre)&&this._books[i].genre.length>0)
             this._genres.push({name: this._books[i].genre});
       }
     }
@@ -70,13 +73,14 @@ export class BookService {
     this.request.post('/books', book.data).subscribe(() => {});
   }
 
-  public byId(id){
+  public byId(id) {
     return this._books.find(book => book.id === id);
   }
 
   constructor(private request: RequestService, private data: DataService) {
     this.justLoaded = new Observable(subscriber => this.justLoadedSubscriber = subscriber);
     this.request.get('/books').subscribe((answer) => {
+      this._booksChanged = true;
       this._loaded = true;
       for(let i = 0; i < answer.length; i++) {
         const book = answer[i];

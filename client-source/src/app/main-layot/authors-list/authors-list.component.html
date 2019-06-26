@@ -1,13 +1,38 @@
-<table class="table" *ngIf="authors.length>0">
-  <thead>
-  <tr>
-    <td>ФИО</td>
-  </tr>
-  </thead>
-  <tr *ngFor="let author of authors.all" class="row">
-    <td><input class="input" [value]="author.name" (change)="authorChanged(author, $event.target.value)"/></td>
-  </tr>
-</table>
-<div style="height: 50px;"></div>
+<!--<table class="table" *ngIf="authors.length>0">-->
+<!--  <thead>-->
+<!--  <tr>-->
+<!--    <td>ФИО</td>-->
+<!--  </tr>-->
+<!--  </thead>-->
+<!--  <tr *ngFor="let author of authors.all" class="row">-->
+<!--    <td><input class="input" [value]="author.name" (change)="authorChanged(author, $event.target.value)"/></td>-->
+<!--  </tr>-->
+<!--</table>-->
 
-<div class="addButton" (click)="addAuthor()">+</div>
+<table mat-table [dataSource]="dataSource" *ngIf="authors.length>0" class="table mat-elevation-z8" style="min-width: 1000px;">
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Автор</th>
+    <td mat-cell *matCellDef="let element" style="text-align: left">
+      <mat-form-field class="example-full-width" style="flex: 1; padding: 10px;">
+        <input matInput [placeholder]="element.name.length==0?'Введите имя автора':''"
+               [value]="element.name" style="width: 100%" (change)="authorChanged(element, $event.target.value)">
+      </mat-form-field>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<div style="height: 10px;"></div>
+
+<mat-paginator [length]="(dataSource||{}).length"
+               [pageSize]="7"
+               style="margin-right: 5%;" *ngIf="authors.length>7">
+</mat-paginator>
+
+<button mat-button (click)="addAuthor()" class="mat-elevation-z8" style="width: 90%; position: absolute; bottom: 20px; left: 5%">+</button>
+<router-outlet></router-outlet>
+
+<!--<div style="height: 50px;"></div>-->
+
+<!--<div class="addButton" (click)="addAuthor()">+</div>-->
