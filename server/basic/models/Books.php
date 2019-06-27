@@ -35,7 +35,7 @@ class Books extends ActiveRecord
     private static function sqlGenreFilter($requestGenreFilter){
         $res=['or'];
         for($i=0; $i<count($requestGenreFilter); $i++)
-            array_push($res, ['~*', 'genre', $requestGenreFilter[$i]['name']]);
+            array_push($res, ['=', 'genre', $requestGenreFilter[$i]['name']]);
         return $res;
     }
 
@@ -43,7 +43,7 @@ class Books extends ActiveRecord
     {
         $find = self::find();
         if($filters) {
-            $find = $find->where(['~*', 'title', $filters['title']]);
+            $find = $find->where(['regexp', 'title', $filters['title']?$filters['title']:'.*']);
             $find->andWhere(self::sqlALFilter($filters['authors'], 'authorId'));
             $find->andWhere(self::sqlALFilter($filters['langs'], 'langId'));
             $find->andWhere(self::sqlPageCountFilter($filters['pageCount']));

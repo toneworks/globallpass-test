@@ -26,7 +26,10 @@ export class BookService {
     return this._genres;
   }
 
+  // tslint:disable-next-line:variable-name
+  private _length;
   public get length(){
+    return this._length;
     if(this._books)
       return this._books.length;
     return [];
@@ -48,16 +51,15 @@ export class BookService {
 
   addOrUpdateBook(book, title, authorId, desc, pageCount, langId, genre) {
     this._booksChanged = true;
-    let id;
     if(!book) {
-      id = this.data.guid();
+      const id = this.data.guid();
       book = new Book(title, authorId, desc, pageCount, langId, genre, id);
       this._books.push(book);
       if(!this._genres.find(genr => genr.name == genre))
         this._genres.push({name: book.genre});
     }
     else {
-      id = book.id;
+      this._length++;
       let genreChanged = false;
       if(book.genre !== genre)
         genreChanged = true;
@@ -105,6 +107,7 @@ export class BookService {
     this.justLoaded = new Observable(subscriber => this.justLoadedSubscriber = subscriber);
     this.loading = true;
     this.request.get('/books').subscribe((answer) => {
+      this._length = answer.length;
       this.loading = false;
       this.setBooks(answer);
     });

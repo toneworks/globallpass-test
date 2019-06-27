@@ -2,9 +2,10 @@
 
 return [
     'class' => 'yii\db\Connection',
-    //'dsn' => 'mysql:host=localhost;dbname=yii2basic',
-    'dsn' => 'pgsql:host=localhost;port=5432;dbname=globalpas;',
-    'username' => 'globalpas',
+    'dsn' => 'mysql:host=localhost;dbname=globalpas-test',
+//    'dsn' => 'pgsql:host=localhost;port=5432;dbname=globalpas;',
+//    'username' => 'globalpas',
+    'username' => 'root',
     'password' => '1',
     'charset' => 'utf8',
 

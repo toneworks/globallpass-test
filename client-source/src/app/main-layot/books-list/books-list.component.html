@@ -1,4 +1,4 @@
-<div class="filters mat-elevation-z8" *ngIf="books.length>1">
+<div class="filters mat-elevation-z8">
   <div style="display: flex; flex-direction: column; flex: 1">
     <mat-form-field class="example-full-width" style="flex: 1; padding: 10px;">
       <input matInput placeholder="Название / описание" [(ngModel)]="filters.titleFilter" (input)="filters.filterChanged = true">
@@ -54,7 +54,7 @@
   </div>
 </div>
 
-<table mat-table [dataSource]="dataSource" *ngIf="books.length>0" class="mat-elevation-z8" style="min-width: 1000px;">
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="min-width: 1000px;">
   <ng-container matColumnDef="title">
     <th mat-header-cell *matHeaderCellDef>Название</th>
     <td mat-cell *matCellDef="let element"> {{element.title}} </td>

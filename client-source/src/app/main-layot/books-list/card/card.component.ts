@@ -104,17 +104,48 @@ export class CardComponent implements OnInit {
           });
         }
       } else {
+
         this.isNew = true;
 
-        if (this.authors.length > 0)
+        if (this.authors.length > 0) {
           this.authorId = this.authors.all[0].id;
-        else
-          this.authors.justAdded.subscribe(author => this.authorId = author.id);
+          this.author = this.authors.all[0];
+        }
+        else {
+          if(this.authors.loaded)
+            this.authors.justAdded.subscribe(author => this.authorId = this.authors.all[0].id);
+          else
+            this.authors.justLoaded.subscribe(() => {
+              if(this.authors.length > 0) {
+                this.authorId = this.authors.all[0].id;
+                this.author = this.authors.all[0];
+              }
+              else
+                this.authors.justAdded.subscribe(author => this.authorId = this.authors.all[0].id);
+            });
+        }
 
-        if (this.langs.length > 0)
+        if (this.langs.length > 0) {
           this.langId = this.langs.all[0].id;
-        else
-          this.langs.justAdded.subscribe(lang => this.langId = lang.id);
+          this.lang = this.langs.all[0];
+        }
+        else {
+          if(this.langs.loaded)
+            this.langs.justAdded.subscribe(author => this.langId = this.langs.all[0].id);
+          else
+            this.langs.justLoaded.subscribe(() => {
+              if(this.langs.length > 0) {
+                this.lang = this.langs.all[0];
+                this.langId = this.langs.all[0].id;
+              }
+              else
+                this.langs.justAdded.subscribe(author => this.langId = this.langs.all[0].id);
+            });
+        }
+        // if (this.langs.length > 0)
+        //   this.langId = this.langs.all[0].id;
+        // else
+        //   this.langs.justAdded.subscribe(lang => this.langId = lang.id);
       }
     }
 
