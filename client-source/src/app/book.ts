@@ -13,7 +13,7 @@ export class Book {
       title: this.title,
       desc: this.desc,
       authorId: this.authorId,
-      pageCount: this.pageCount,
+      pagecount: this.pageCount,
       langId: this.langId,
       genre: this.genre
     };

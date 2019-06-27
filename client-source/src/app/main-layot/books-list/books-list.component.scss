@@ -96,3 +96,17 @@ $margin: 15px;
 .resetFilter:active{
   box-shadow: none;
 }
+
+.spinner{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 258px;
+  left: 0;
+  height: 504px;
+  z-index: 2;
+  pointer-events: none;
+  width: 100%;
+  background: rgba(200, 200, 200, 0.5);
+}

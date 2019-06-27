@@ -11,7 +11,13 @@ class BooksController extends Controller
 
     public function actionIndex()
     {
-        return Books::getAll();
+        $request = $_SERVER['QUERY_STRING'];
+        $request = str_replace("/&", "", $request);
+        $request = str_replace("&", "", $request);
+        $request = $requestString = rawurldecode($request); //удаляет %22
+        $filters = json_decode($request, true);
+
+        return Books::getAll($filters);
     }
 
     public function actionCreate(){
@@ -25,7 +31,7 @@ class BooksController extends Controller
         $record->title = $request->post('title');;
         $record->description = $request->post('desc');
         $record->authorId = $request->post('authorId');
-        $record->pageCount = $request->post('pageCount');
+        $record->pagecount = $request->post('pagecount');
         $record->langId = $request->post('langId');
         $record->genre = $request->post('genre');
 

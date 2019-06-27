@@ -1,4 +1,4 @@
-<div class="filters mat-elevation-z8" *ngIf="books.length>1">
+<div class="filters mat-elevation-z8" *ngIf="books.length>-1">
   <div style="display: flex; flex-direction: column; flex: 1">
     <mat-form-field class="example-full-width" style="flex: 1; padding: 10px;">
       <input matInput placeholder="Название / описание" [(ngModel)]="titleFilter" (input)="filterChanged = true">
@@ -39,7 +39,8 @@
       </mat-form-field>
     </form>
     <button mat-button *ngIf="pageCountFilter.min!=undefined||pageCountFilter.max!=undefined"
-            (click)="resetPageCountFilter()">✕</button>
+            (click)="resetPageCountFilter()">✕
+    </button>
   </div>
 
   <div style="display: flex; flex-direction: column; flex: 1">
@@ -82,6 +83,14 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns" class="head"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="'/books-list/'+row.id" class="row"></tr>
 </table>
+
+<div class="spinner" *ngIf="loading">
+  <mat-progress-spinner
+    [color]="'primary'"
+    [mode]="'indeterminate'">
+  </mat-progress-spinner>
+</div>
+
 <div style="height: 10px;"></div>
 
 <mat-paginator [length]="dataSource.data.length"

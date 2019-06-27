@@ -65,7 +65,7 @@ export class BookService {
         // Обновление массива жанров
         this._genres = [];
         for (let i = 0; i < this._books.length; i++)
-          if (!this._genres.find(curGenre => curGenre.name === this._books[i].genre)&&this._books[i].genre.length>0)
+          if (!this._genres.find(curGenre => curGenre.name === this._books[i].genre) && this._books[i].genre.length > 0)
             this._genres.push({name: this._books[i].genre});
       }
     }
@@ -77,19 +77,32 @@ export class BookService {
     return this._books.find(book => book.id === id);
   }
 
+  private setBooks(books){
+    this._booksChanged = true;
+    this._loaded = true;
+    this._books = [];
+    for(let i = 0; i < books.length; i++) {
+      const book = books[i];
+      this._books.push(new Book(book.title, book.authorId, book.description, book.pagecount, book.langId, book.genre, book.id));
+      if(book.genre.length>0 && !this._genres.find(genre => genre.name == book.genre))
+        this._genres.push({name: book.genre});
+    }
+    if(this.justLoadedSubscriber)
+      this.justLoadedSubscriber.next();
+  }
+
+  public getFilteredBooks(filters) {
+    this.request.get('/books?' + JSON.stringify(filters)).subscribe(answer => {
+      console.log(answer);
+      this.setBooks(answer);
+    });
+  }
+
   constructor(private request: RequestService, private data: DataService) {
     this.justLoaded = new Observable(subscriber => this.justLoadedSubscriber = subscriber);
     this.request.get('/books').subscribe((answer) => {
-      this._booksChanged = true;
-      this._loaded = true;
-      for(let i = 0; i < answer.length; i++) {
-        const book = answer[i];
-        this._books.push(new Book(book.title, book.authorId, book.description, book.pageCount, book.langId, book.genre, book.id));
-        if(book.genre.length>0 && !this._genres.find(genre => genre.name == book.genre))
-          this._genres.push({name: book.genre});
-      }
-      if(this.justLoadedSubscriber)
-        this.justLoadedSubscriber.next();
+      console.log(answer);
+      this.setBooks(answer);
     });
   }
 }

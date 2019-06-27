@@ -7,12 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainLayotComponent implements OnInit {
 
-  tabId = 'books';
-
-  setTabId(tabId) {
-    this.tabId = tabId;
-  }
-
   constructor() { }
 
   ngOnInit() {
