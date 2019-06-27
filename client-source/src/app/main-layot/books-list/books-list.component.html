@@ -1,4 +1,4 @@
-<div class="filters mat-elevation-z8" *ngIf="books.length>-1">
+<div class="filters mat-elevation-z8" *ngIf="books.length>1">
   <div style="display: flex; flex-direction: column; flex: 1">
     <mat-form-field class="example-full-width" style="flex: 1; padding: 10px;">
       <input matInput placeholder="Название / описание" [(ngModel)]="filters.titleFilter" (input)="filters.filterChanged = true">
