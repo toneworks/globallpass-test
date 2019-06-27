@@ -12,6 +12,8 @@ export class BookService {
   public justLoaded;
   private justLoadedSubscriber;
 
+  public loading = false;
+
   // tslint:disable-next-line:variable-name
   private _books = [];
   public get all(){
@@ -92,16 +94,18 @@ export class BookService {
   }
 
   public getFilteredBooks(filters) {
+    this.loading = true;
     this.request.get('/books?' + JSON.stringify(filters)).subscribe(answer => {
-      console.log(answer);
+      this.loading = false;
       this.setBooks(answer);
     });
   }
 
   constructor(private request: RequestService, private data: DataService) {
     this.justLoaded = new Observable(subscriber => this.justLoadedSubscriber = subscriber);
+    this.loading = true;
     this.request.get('/books').subscribe((answer) => {
-      console.log(answer);
+      this.loading = false;
       this.setBooks(answer);
     });
   }

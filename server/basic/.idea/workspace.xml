@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="43bfab1c-8096-41e3-bf48-98b806d27540" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../client-source/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../client-source/src/app/app.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../client-source/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../client-source/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../client-source/src/app/book.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../client-source/src/app/book.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../client-source/src/app/main-layot/books-list/books-list.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../client-source/src/app/main-layot/books-list/books-list.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../client-source/src/app/main-layot/books-list/books-list.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../../client-source/src/app/main-layot/books-list/books-list.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../client-source/src/app/main-layot/books-list/books-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../client-source/src/app/main-layot/books-list/books-list.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../client-source/src/app/main-layot/main-layot.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../client-source/src/app/main-layot/main-layot.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/BooksController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/BooksController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Books.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Books.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,8 +39,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/BooksController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="19" column="26" lean-forward="true" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
+            <state relative-caret-position="103">
+              <caret line="16" column="59" selection-start-line="16" selection-start-column="59" selection-end-line="16" selection-end-column="59" />
               <folding>
                 <element signature="e#34#58#0#PHP" expanded="true" />
               </folding>
@@ -86,8 +77,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/models/Books.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="846">
-              <caret line="47" column="49" selection-start-line="47" selection-start-column="49" selection-end-line="47" selection-end-column="49" />
+            <state relative-caret-position="139">
+              <caret line="27" column="52" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -132,6 +123,7 @@
       <find>verbs</find>
       <find>actionHe</find>
       <find>actionHello</find>
+      <find>pageCount</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -158,8 +150,8 @@
         <option value="$PROJECT_DIR$/models/Authors.php" />
         <option value="$PROJECT_DIR$/controllers/AuthorsController.php" />
         <option value="$PROJECT_DIR$/models/Langs.php" />
-        <option value="$PROJECT_DIR$/controllers/BooksController.php" />
         <option value="$PROJECT_DIR$/models/Books.php" />
+        <option value="$PROJECT_DIR$/controllers/BooksController.php" />
       </list>
     </option>
   </component>
@@ -319,12 +311,12 @@
       <workItem from="1561282896447" duration="5030000" />
       <workItem from="1561295825615" duration="2643000" />
       <workItem from="1561315200465" duration="30919000" />
-      <workItem from="1561611729128" duration="10473000" />
+      <workItem from="1561611729128" duration="11588000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49065000" />
+    <option name="totallyTimeSpent" value="50180000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1920" height="986" extended-state="6" />
@@ -464,8 +456,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/BooksController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="19" column="26" lean-forward="true" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
+        <state relative-caret-position="103">
+          <caret line="16" column="59" selection-start-line="16" selection-start-column="59" selection-end-line="16" selection-end-column="59" />
           <folding>
             <element signature="e#34#58#0#PHP" expanded="true" />
           </folding>
@@ -474,8 +466,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/models/Books.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="846">
-          <caret line="47" column="49" selection-start-line="47" selection-start-column="49" selection-end-line="47" selection-end-column="49" />
+        <state relative-caret-position="139">
+          <caret line="27" column="52" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="52" />
         </state>
       </provider>
     </entry>

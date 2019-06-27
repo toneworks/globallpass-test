@@ -14,7 +14,7 @@ class BooksController extends Controller
         $request = $_SERVER['QUERY_STRING'];
         $request = str_replace("/&", "", $request);
         $request = str_replace("&", "", $request);
-        $request = $requestString = rawurldecode($request); //удаляет %22
+        $request = $requestString = rawurldecode($request);
         $filters = json_decode($request, true);
 
         return Books::getAll($filters);

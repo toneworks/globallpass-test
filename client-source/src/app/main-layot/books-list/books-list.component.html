@@ -1,56 +1,56 @@
 <div class="filters mat-elevation-z8" *ngIf="books.length>-1">
   <div style="display: flex; flex-direction: column; flex: 1">
     <mat-form-field class="example-full-width" style="flex: 1; padding: 10px;">
-      <input matInput placeholder="Название / описание" [(ngModel)]="titleFilter" (input)="filterChanged = true">
+      <input matInput placeholder="Название / описание" [(ngModel)]="filters.titleFilter" (input)="filters.filterChanged = true">
     </mat-form-field>
-    <button mat-button *ngIf="titleFilter.length>0" (click)="resetTitleFilter()">✕</button>
+    <button mat-button *ngIf="filters.titleFilter.length>0" (click)="filters.resetTitleFilter()">✕</button>
   </div>
 
   <div style="display: flex; flex-direction: column; flex: 1">
     <mat-form-field style="flex: 1; padding: 10px;" *ngIf="authors.length>1">
       <mat-label>Авторы</mat-label>
-      <mat-select multiple (selectionChange)="filterChanged = true" [(value)]="authorsFilter">
+      <mat-select multiple (selectionChange)="filters.filterChanged = true" [(value)]="filters.authorsFilter">
         <mat-option *ngFor="let topping of authors.all" [value]="topping">{{topping.name}}</mat-option>
       </mat-select>
     </mat-form-field>
-    <button mat-button *ngIf="authorsFilter.length>0" (click)="resetAuthorsFilter()">✕</button>
+    <button mat-button *ngIf="filters.authorsFilter.length>0" (click)="filters.resetAuthorsFilter()">✕</button>
   </div>
 
   <div style="display: flex; flex-direction: column; flex: 1">
     <mat-form-field style="flex: 1; padding: 10px;" *ngIf="langs.length>1">
       <mat-label>Языки</mat-label>
-      <mat-select multiple (selectionChange)="filterChanged = true" [(value)]="langsFilter">
+      <mat-select multiple (selectionChange)="filters.filterChanged = true" [(value)]="filters.langsFilter">
         <mat-option *ngFor="let topping of langs.all" [value]="topping">{{topping.name}}</mat-option>
       </mat-select>
     </mat-form-field>
-    <button mat-button *ngIf="langsFilter.length>0" (click)="resetLangsFilter()">✕</button>
+    <button mat-button *ngIf="filters.langsFilter.length>0" (click)="filters.resetLangsFilter()">✕</button>
   </div>
 
   <div style="display: flex; flex-direction: column; flex: 2">
     <form style="flex: 1; padding: 10px">
       <mat-form-field class="mat-form-field">
-        <input matInput type="number" placeholder="Минимум страниц" [(ngModel)]="pageCountFilter.min"
-               (input)="pageCountFilterChanged('min', $event.target.value)" [ngModelOptions]="{standalone: true}">
+        <input matInput type="number" placeholder="Минимум страниц" [(ngModel)]="filters.pageCountFilter.min"
+               (input)="filters.pageCountFilterChanged('min', $event.target.value)" [ngModelOptions]="{standalone: true}">
       </mat-form-field>
       <mat-form-field class="mat-form-field" style="margin-left: 5px;">
-        <input matInput type="number" placeholder="Максимум страниц" [(ngModel)]="pageCountFilter.max"
-               (input)="pageCountFilterChanged('max', $event.target.value)"
-               (change)="maxCountFilterAccept($event.target.value)" [ngModelOptions]="{standalone: true}">
+        <input matInput type="number" placeholder="Максимум страниц" [(ngModel)]="filters.pageCountFilter.max"
+               (input)="filters.pageCountFilterChanged('max', $event.target.value)"
+               (change)="filters.maxCountFilterAccept($event.target.value)" [ngModelOptions]="{standalone: true}">
       </mat-form-field>
     </form>
-    <button mat-button *ngIf="pageCountFilter.min!=undefined||pageCountFilter.max!=undefined"
-            (click)="resetPageCountFilter()">✕
+    <button mat-button *ngIf="filters.pageCountFilter.min!=undefined||filters.pageCountFilter.max!=undefined"
+            (click)="filters.resetPageCountFilter()">✕
     </button>
   </div>
 
   <div style="display: flex; flex-direction: column; flex: 1">
     <mat-form-field style="flex: 1; padding: 10px;" *ngIf="books.genres.length>1">
       <mat-label>Жанры</mat-label>
-      <mat-select multiple (selectionChange)="filterChanged = true" [(value)]="genreFilter">
+      <mat-select multiple (selectionChange)="filters.filterChanged = true" [(value)]="filters.genreFilter">
         <mat-option *ngFor="let topping of books.genres" [value]="topping">{{topping.name}}</mat-option>
       </mat-select>
     </mat-form-field>
-    <button mat-button *ngIf="genreFilter.length>0" (click)="resetGenreFilter()">✕</button>
+    <button mat-button *ngIf="filters.genreFilter.length>0" (click)="filters.resetGenreFilter()">✕</button>
   </div>
 </div>
 
@@ -84,7 +84,7 @@
   <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="'/books-list/'+row.id" class="row"></tr>
 </table>
 
-<div class="spinner" *ngIf="loading">
+<div class="spinner" *ngIf="books.loading">
   <mat-progress-spinner
     [color]="'primary'"
     [mode]="'indeterminate'">
